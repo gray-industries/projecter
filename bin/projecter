@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'thor'
+
+# Set up the load path so we can load things from our own lib
+$: << File.expand_path("../../lib", __FILE__)
+
+require 'projecter'
+
+# Skeleton CLI class
+class ProjecterCLI < Thor
+  check_unknown_options!
+end
+
+# load all commands
+cmd_root = "../../lib/commands/*"
+Dir[File.expand_path(cmd_root, __FILE__)].each do |cmd|
+  require cmd
+end
+
+unless $0 =~ /rspec/
+  ProjecterCLI.start
+end

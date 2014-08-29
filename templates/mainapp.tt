@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+
+# Set up the load path so we can load things from our own lib
+$LOAD_PATH << File.expand_path('../../lib', __FILE__)
+
+require '<%= config[:project] %>'
+
+# Skeleton CLI class
+class <%= config[:classname] %>CLI < Thor
+  check_unknown_options!
+end
+
+#
+# Load all commands
+#
+
+<%= config[:classname] %>.before_command_load
+
+cmd_root = '../../lib/commands/*'
+Dir[File.expand_path(cmd_root, __FILE__)].each do |cmd|
+  require cmd
+end
+
+<%= config[:classname] %>.after_command_load
+
+# Janky way of avoiding starting the CLI if we're running under rspec.
+<%= config[:classname] %>CLI.start unless $PROGRAM_NAME =~ /rspec/

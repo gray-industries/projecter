@@ -1,0 +1,6 @@
+class <%= config[:classname] %>CLI < Thor
+  desc 'version', 'show <%= config[:project] %> version'
+  def version
+    puts "<%= config[:project] %> #{<%= config[:classname] %>::VERSION}"
+  end
+end

@@ -1,0 +1,5 @@
+<% unless config[:library_only] -%>
+IrresponsibleModule:
+  exclude:
+    - <%= config[:classname] %>CLI
+<% end -%>
