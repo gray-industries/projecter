@@ -29,9 +29,9 @@ Reek::Rake::Task.new(:reek_spec) do |task|
 end
 
 desc 'runs Rubocop'
-Rubocop::RakeTask.new
+RuboCop::RakeTask.new
 
-desc 'Runs test and code cleanliness suite: Rubocop, Reek, rspec, and yard'
+desc 'Runs test and code cleanliness suite: RuboCop, Reek, rspec, and yard'
 task run_guards: [:spec, :yard, :reek_lib, :rubocop]
 
 task build: :run_guards
