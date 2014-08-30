@@ -7,9 +7,6 @@ require 'rspec/core/rake_task'
 require 'reek/rake/task'
 require 'rubocop/rake_task'
 
-# Opower-specific tasks
-require 'github_project/tasks/github'
-
 task default: :build
 
 # If there are test failures, you'll need to write code to address them.
