@@ -1,3 +1,3 @@
-source 'http://gemserver.va.opower.it'
+source 'https://rubygems.org'
 
 gemspec
