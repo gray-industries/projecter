@@ -1,6 +1,6 @@
-class PuntyCLI < Thor
-  desc "version", "show punty version"
+class ProjecterCLI < Thor
+  desc "version", "show projecter version"
   def version
-    puts "punty #{Projecter::VERSION}"
+    puts "projecter #{Projecter::VERSION}"
   end
 end
