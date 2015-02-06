@@ -1,5 +1,8 @@
 require '<%= config[:project] %>/version'
 
+# <%= config[:classname] %>
+#
+# This is the top level container module for your library.
 module <%= config[:classname] %>
 <% unless config[:library_only] -%>
   # Callback invoked before the CLI loads all its command modules.
