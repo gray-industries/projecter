@@ -4,7 +4,7 @@ require 'rubygems'
 require 'thor'
 
 # Set up the load path so we can load things from our own lib
-$: << File.expand_path("../../lib", __FILE__)
+$LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
 require 'projecter'
 
@@ -14,11 +14,9 @@ class ProjecterCLI < Thor
 end
 
 # load all commands
-cmd_root = "../../lib/commands/*"
+cmd_root = '../../lib/commands/*'
 Dir[File.expand_path(cmd_root, __FILE__)].each do |cmd|
   require cmd
 end
 
-unless $0 =~ /rspec/
-  ProjecterCLI.start
-end
+ProjecterCLI.start unless $PROGRAM_NAME =~ /rspec/

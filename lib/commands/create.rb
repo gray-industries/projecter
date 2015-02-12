@@ -11,24 +11,24 @@ class ProjecterCLI < Thor
   source_root(File.expand_path('../../..', __FILE__))
 
   desc 'create PROJECT', 'Create a new Thor CLI skeleton in ./PROJECT'
-  method_options :uses_templates => false, :uses_files => false, :library => false
+  method_options uses_templates: false, uses_files: false, library: false
 
   def create(project)
     @project = project
 
-    run "git init #{@project}", :capture => true unless File.exist?(File.join(@project, '.git'))
+    run("git init #{@project}", capture: true) unless File.exist?(File.join(@project, '.git'))
 
     create_project_dirs
 
-    projecter_file({
-      'Gemfile'         => 'Gemfile',
-      'Guardfile'       => 'Guardfile',
-      'Rakefile'        => 'Rakefile',
-      'dot-gitignore'   => '.gitignore',
-      'dot-metrics'     => '.metrics',
-      'dot-rspec'       => '.rspec',
-      'dot-rubocop.yml' => '.rubocop.yml',
-    })
+    projecter_file(
+      'Gemfile' => 'Gemfile',
+      'Guardfile' => 'Guardfile',
+      'Rakefile' => 'Rakefile',
+      'dot-gitignore' => '.gitignore',
+      'dot-metrics' => '.metrics',
+      'dot-rspec' => '.rspec',
+      'dot-rubocop.yml' => '.rubocop.yml'
+    )
 
     lib_templates = {
       'gemspec.tt' => "#{project}.gemspec",
@@ -38,12 +38,12 @@ class ProjecterCLI < Thor
       'version.rb.tt' => ['lib', project, 'version.rb'],
       'spec_helper.rb.tt' => %w(spec spec_helper.rb),
       'spec_fixtures.rb.tt' => %w(spec fixtures.rb),
-      'spec_resources.rb.tt' => %w(spec resources.rb),
+      'spec_resources.rb.tt' => %w(spec resources.rb)
     }
 
     app_templates = {
       'mainapp.tt' => ['bin', project],
-      'version-cmd.rb.tt' => %w(lib commands version.rb),
+      'version-cmd.rb.tt' => %w(lib commands version.rb)
     }
 
     templates = lib_templates
@@ -51,14 +51,12 @@ class ProjecterCLI < Thor
 
     projecter_template(
       templates,
-      {
-        :project => project,
-        :classname => project
-                        .split(/[_-]/)
-                        .map(&:capitalize)
-                        .join,
-        :library_only => options.library?
-      }
+      project: project,
+      classname: project
+                   .split(/[_-]/)
+                   .map(&:capitalize)
+                   .join,
+      library_only: options.library?
     )
 
     inside(@project) do
@@ -72,11 +70,10 @@ class ProjecterCLI < Thor
         create_file File.join(path, '.gitignore'), ''
       end
 
-      run 'git add .gitignore', :capture => true
-      run 'git add .', :capture => true
-      run "git commit --allow-empty -m 'Created #{@project} using Projecter #{Projecter::VERSION}.'", :capture => true
+      run('git add .gitignore', capture: true)
+      run('git add .', capture: true)
+      run("git commit --allow-empty -m 'Created #{@project} using Projecter #{Projecter::VERSION}.'", capture: true)
     end
-
   end
 
   private

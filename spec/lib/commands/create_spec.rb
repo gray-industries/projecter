@@ -45,6 +45,5 @@ RSpec.describe ProjecterCLI do
     context 'when not in library mode' do
       it_behaves_like 'a library'
     end
-
   end
 end
