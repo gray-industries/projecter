@@ -31,7 +31,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency('guard-rubocop', '~> 1.2')
   gem.add_development_dependency('rainbow', '2.0')
   gem.add_development_dependency('metric_fu', '~> 4.11')
-  gem.add_development_dependency('guard-reek', '~> 0.0.4')
   gem.add_development_dependency('rake', '~> 10.3')
   gem.add_development_dependency('yard', '~> 0.8.7')
   gem.add_development_dependency('redcarpet', '~> 3.2')
