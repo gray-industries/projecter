@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = Projecter::VERSION
 
   # dependencies...
-  gem.add_dependency('thor', '0.18.1')
+  gem.add_dependency('thor', '0.19.1')
   gem.add_dependency('sysexits', '1.0.2')
   gem.add_dependency('awesome_print', '~> 1.1.0')
   gem.add_dependency('abstract_type', '~> 0.0.7')
