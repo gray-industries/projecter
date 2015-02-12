@@ -13,6 +13,7 @@ class ProjecterCLI < Thor
   desc 'create PROJECT', 'Create a new Thor CLI skeleton in ./PROJECT'
   method_options uses_templates: false, uses_files: false, library: false
 
+  # rubocop:disable Metrics/AbcSize
   def create(project)
     @project = project
 
@@ -75,6 +76,7 @@ class ProjecterCLI < Thor
       run("git commit --allow-empty -m 'Created #{@project} using Projecter #{Projecter::VERSION}.'", capture: true)
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
@@ -99,6 +101,7 @@ class ProjecterCLI < Thor
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
   def create_project_dirs
     source_dirs = ['lib', "lib/#{@project}"]
     %w(bin lib/commands).map { |d| source_dirs << d } unless options.library?
@@ -115,6 +118,7 @@ class ProjecterCLI < Thor
       empty_directory File.join(@project, dir)
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def library?
     @library ||= options.library?
