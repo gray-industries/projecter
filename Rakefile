@@ -1,6 +1,4 @@
-# rubocop: disable LeadingCommentSpace
 #! /usr/bin/env rake
-# rubocop: enable LeadingCommentSpace
 require 'bundler/gem_tasks'
 require 'yard'
 require 'rspec/core/rake_task'
