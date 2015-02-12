@@ -37,7 +37,6 @@ The Rakefile comes with several convenience tasks for running tests as well. By 
 
   + `spec`: Runs all rspec tests in the spec directory.
   + `yard`: Generates yard documentation.
-  + `reek_lib`: Runs reek on the lib directory only.
   + `rubocop`: Runs rubocop.
   + `run_guards`: Runs all guards.
 
