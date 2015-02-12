@@ -1,7 +1,14 @@
+require 'thor'
 require 'find'
 
 class ProjecterCLI < Thor
+  # The create command is responsible for driving project creation.
+  # XXX: This should be simpler. Eventually refactor once we have
+  # composable projects, different project types besides lib/thorapp.
+
   include Thor::Actions
+  add_runtime_options!
+  source_root(File.expand_path('../../..', __FILE__))
 
   desc 'create PROJECT', 'Create a new Thor CLI skeleton in ./PROJECT'
   method_options :uses_templates => false, :uses_files => false, :library => false
@@ -9,7 +16,6 @@ class ProjecterCLI < Thor
   def create(project)
     @project = project
 
-    ProjecterCLI::source_root(File.expand_path('../../..', __FILE__))
     run "git init #{@project}", :capture => true unless File.exist?(File.join(@project, '.git'))
 
     create_project_dirs
@@ -66,8 +72,8 @@ class ProjecterCLI < Thor
         create_file File.join(path, '.gitignore'), ''
       end
 
-      run "git add .gitignore", :capture => true
-      run "git add .", :capture => true
+      run 'git add .gitignore', :capture => true
+      run 'git add .', :capture => true
       run "git commit --allow-empty -m 'Created #{@project} using Projecter #{Projecter::VERSION}.'", :capture => true
     end
 
@@ -98,7 +104,7 @@ class ProjecterCLI < Thor
 
   def create_project_dirs
     source_dirs = ['lib', "lib/#{@project}"]
-    source_dirs << %w(bin lib/commands) unless options.library?
+    %w(bin lib/commands).map { |d| source_dirs << d } unless options.library?
 
     test_resource_dirs = %w(fixtures resources)
     test_kinds = %w(unit integration acceptance)
@@ -113,4 +119,7 @@ class ProjecterCLI < Thor
     end
   end
 
+  def library?
+    @library ||= options.library?
+  end
 end
