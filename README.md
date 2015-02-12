@@ -1,5 +1,7 @@
 # Projecter
 
+[![Code Climate](https://codeclimate.com/github/gray-industries/projecter/badges/gpa.svg)](https://codeclimate.com/github/gray-industries/projecter)
+
 Projecter is a simple CLI application generator.
 
 ## Installation
