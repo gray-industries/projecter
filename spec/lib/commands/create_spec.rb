@@ -3,14 +3,6 @@ require 'commands/create'
 shared_examples_for 'a project' do
   let(:project) { 'test_project' }
 
-  subject do
-    described_class.class_options(
-      quiet: true,
-      pretend: true
-    )
-    described_class.new([], {library: library})
-  end
-
   after do
     subject.create(project)
   end
@@ -29,12 +21,18 @@ end
 RSpec.describe ProjecterCLI do
   describe '#create_project_dirs' do
     let(:project) { 'test_project' }
+    let(:options) do
+      {
+        library: library
+      }
+    end
+
     subject do
       described_class.class_options(
         quiet: true,
         pretend: true
       )
-      described_class.new([], {library: library})
+      described_class.new([], library: library)
     end
 
     before do
