@@ -34,7 +34,6 @@ class ProjecterCLI < Thor
     lib_templates = {
       'gemspec.tt' => "#{project}.gemspec",
       'README.md.tt' => 'README.md',
-      'reek.tt' => "#{project}.reek",
       'mainlib.rb.tt' => ['lib', "#{project}.rb"],
       'version.rb.tt' => ['lib', project, 'version.rb'],
       'spec_helper.rb.tt' => %w(spec spec_helper.rb),
@@ -48,7 +47,7 @@ class ProjecterCLI < Thor
     }
 
     templates = lib_templates
-    templates.merge(app_templates) unless options.library?
+    templates.merge!(app_templates) unless options.library?
 
     projecter_template(
       templates,
