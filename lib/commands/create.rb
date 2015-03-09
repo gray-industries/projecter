@@ -34,6 +34,7 @@ class ProjecterCLI < Thor
     lib_templates = {
       'gemspec.tt' => "#{project}.gemspec",
       'README.md.tt' => 'README.md',
+      'LICENSE.md.tt' => 'LICENSE.md',
       'mainlib.rb.tt' => ['lib', "#{project}.rb"],
       'version.rb.tt' => ['lib', project, 'version.rb'],
       'spec_helper.rb.tt' => %w(spec spec_helper.rb),
